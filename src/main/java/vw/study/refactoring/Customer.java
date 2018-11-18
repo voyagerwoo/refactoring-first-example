@@ -20,9 +20,6 @@ public class Customer {
         while(rentals.hasMoreElements()) {
             Rental each = (Rental) rentals.nextElement();
 
-            // 비디오 종류별로 대여료 계산
-            double thisAmount = each.getCharge();
-
             // 적립 포인트를 1 포인트 증가
             frequentRenterPoints ++;
 
@@ -31,8 +28,8 @@ public class Customer {
                 frequentRenterPoints ++;
 
             // 이번에 대여하는 비디오 정보와 대여료를 출력
-            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(thisAmount) + "\n";
-            totalAmount += thisAmount;
+            result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getCharge()) + "\n";
+            totalAmount += each.getCharge();
         }
 
         //푸터 행 추가
