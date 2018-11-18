@@ -6,7 +6,7 @@ public class Movie {
     public static final int NEW_RELEASE = 1;
 
     private String _title;
-    private int _priceCode;
+    private Price _price;
 
     public Movie(String title, int priceCode) {
         this._title = title;
@@ -18,11 +18,24 @@ public class Movie {
     }
 
     public int getPriceCode() {
-        return _priceCode;
+        return _price.getPriceCode();
     }
 
     public void setPriceCode(int priceCode) {
-        this._priceCode = priceCode;
+        switch (priceCode) {
+            case REGULAR:
+                _price = new RegularPrice();
+                break;
+            case CHILDRENS:
+                _price = new ChildrensPrice();
+                break;
+            case NEW_RELEASE:
+                _price = new NewReleasePrice();
+                break;
+            default:
+                throw new IllegalArgumentException("가격 코드가 잘못되었습니다.");
+
+        }
     }
 
     double getCharge(int daysRented) {
